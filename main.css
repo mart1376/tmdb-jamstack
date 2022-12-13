@@ -1,0 +1,260 @@
+/* ~~~~~~~~~~~CSS RESET~~~~~~~~~~~ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+    margin: 0 0 1.5rem;
+    color: var(--primary-dark);
+}
+
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+html {
+    line-height: 1.5;
+    font-family: 'Hubot-Sans', 'Oswald', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    margin: 0;
+}
+
+a {
+    text-decoration-skip-ink: auto;
+    color: var(--accent-color);
+}
+
+img,
+picture,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+svg {
+    fill: currentColor;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+:root{
+    --primary-color: #08b4e2;
+    --secondary-color: #8ecea2;
+    --dark: rgb(109, 123, 165);
+    --light: rgb(255, 255, 255);
+    --gradient-color: linear-gradient( 90deg, #8ecea2, #08b4e2);
+}
+
+
+html{
+    background: var(--gradient-color);
+}
+
+header{
+    padding: 1rem;
+
+
+}
+
+form{
+    height: fit-content;
+
+}
+
+.search{
+    background: var(--gradient-color);
+    font-size: 1.25rem;
+    border-radius: .5rem;
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    border-color: var(--dark);
+    text-align: center;
+}
+
+.search:focus{
+    outline: 0;
+    background-color: rgb(138, 216, 136);
+}
+
+.search::placeholder{
+    color: black;
+}
+
+h1{
+    text-align: center;
+    color: black;
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    background-color: var(--dark);
+    width:30rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+main{
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.movie{
+    margin: 1rem;
+
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    background-color: var(--dark);
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+
+}
+
+.movie img{
+    width: 100%;
+}
+.movie-info{
+    color: black;
+}
+
+
+.header-img{
+    width: 45rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--dark);
+    border: 1rem solid var(--dark);
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+}
+
+.choice{
+
+    display: grid;
+    grid-template-columns:  repeat(12, 1fr);
+    padding-bottom: 2rem;
+}
+
+.pick-movie{
+    grid-column: 5;
+    font-size: 2rem;
+    background-color: var(--primary-color);
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    border-radius: 1rem;
+    text-align: center;
+    padding: .25rem;
+    border: .2rem solid var(--dark);
+    width: 10rem;
+    color: black;
+    font-weight: 400;
+}
+
+.pick-tv{
+    grid-column: 8/9;
+    font-size: 2rem;
+    background-color: var(--primary-color);
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    border-radius: 1rem;
+    text-align: center;
+    padding: .25rem;
+    border: .2rem solid var(--dark);
+    width: 10rem;
+    color: black;
+    font-weight: 400;
+}
+
+.pick-movie:focus,
+.pick-movie:hover{
+    background-color: var(--secondary-color);
+}
+.pick-tv:focus,
+.pick-tv:hover{
+    background-color: var(--secondary-color);
+}
+
+h4{
+    margin-bottom: .5rem;
+}
+
+h2{
+    margin-top: 1.5rem;
+    text-decoration: underline;
+}
+
+@media only screen and (min-width: 60em) {
+    main{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .movie{
+        width: 100%;
+        display: flex;
+    }
+    .movie-info {
+        padding-left: 2rem;
+    }
+    .movie img {
+        width: 35%;
+    }
+    .overview{
+
+    }
+
+
+}
