@@ -101,13 +101,6 @@ html{
 
 header{
     padding: 1rem;
-
-
-}
-
-form{
-    height: fit-content;
-
 }
 
 .search{
@@ -117,6 +110,7 @@ form{
     box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
     border-color: var(--dark);
     text-align: center;
+    width: 20rem;
 }
 
 .search:focus{
@@ -133,10 +127,27 @@ h1{
     color: black;
     box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
     background-color: var(--dark);
-    width:30rem;
+    max-width: 45rem;
     margin: 0 auto;
     margin-bottom: 3rem;
+    padding-bottom: 2rem;
     font-weight: 400;
+    border-radius: 0 0 1rem 1rem;
+}
+
+h4 {
+    margin-bottom: .5rem;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 0;
+    padding-top: 2rem;
+}
+
+h2 {
+    margin-top: 1.5rem;
+    text-decoration: underline;
 }
 
 form{
@@ -151,21 +162,18 @@ main{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
 }
 
-.movie{
+.card{
     margin: 1rem;
-
     box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
     background-color: var(--dark);
     padding: 1rem;
     border-radius: 1rem;
     color: white;
-
 }
 
-.movie img{
+.card img{
     width: 100%;
 }
 .movie-info{
@@ -180,10 +188,10 @@ main{
     background-color: var(--dark);
     border: 1rem solid var(--dark);
     box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    border-radius: 1rem 1rem 0 0;
 }
 
 .choice{
-
     display: grid;
     grid-template-columns:  repeat(12, 1fr);
     padding-bottom: 2rem;
@@ -226,14 +234,7 @@ main{
     background-color: var(--secondary-color);
 }
 
-h4{
-    margin-bottom: .5rem;
-}
 
-h2{
-    margin-top: 1.5rem;
-    text-decoration: underline;
-}
 
 @media only screen and (min-width: 60em) {
     main{
@@ -242,19 +243,14 @@ h2{
         grid-template-rows: 1fr;
     }
 
-    .movie{
+    .card{
         width: 100%;
         display: flex;
     }
     .movie-info {
         padding-left: 2rem;
     }
-    .movie img {
+    .card img {
         width: 35%;
     }
-    .overview{
-
-    }
-
-
 }

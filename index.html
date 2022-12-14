@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./main.css">
     <title>TMDB-JAMSTACK</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' *.themoviedb.org 'unsafe-inline';
+        img-src 'self' https://image.tmdb.org/ ;" />
 </head>
+
+
 <body>
     <header>
         <img src="./images/tmdb-long-logo.svg" class="header-img" alt="the move database logo">
         <h1>MOVIE & TV SEARCH</h1>
         <div id="choice" class="choice">
-            <div class="pick-movie">Movie</div>
-            <div class="pick-tv">TV</div>
+            <button id="pick-movie"  class="pick-movie">Movie</button>
+            <button id="pick-tv" class="pick-tv">TV</button>
         </div>
         <form action="" id="form">
-            <input type="text" placeholder="Search Here" id="search" class="search">
+            <input type="text" placeholder="Please Select Movie or TV" id="search" class="search">
         </form>
     </header>
 
 
     <main id="main">
-        <div class="movie">
+        <div class="card">
             <img src="./images/tmdb-short-logo.svg" alt="image">
             <div class="movie-info">
                 <h3>Movie Title</h3>
@@ -35,6 +39,6 @@
         </div>
     </main>
 
-    <script src="./script.js" type="module"></script>
+    <script src="./script.js" defer type="module"></script>
 </body>
 </html>
