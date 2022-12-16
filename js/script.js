@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function hc (ev){
     let href = ev.currentTarget.href;
     history.replaceState(null, null, href);
-    console.log(hs);
 }
 
 //clear main screen of index css set up
@@ -149,8 +148,8 @@ document.querySelector('a').addEventListener('click', (ev) =>{
         fetch(url)
         .then(response => response.json())
         .then (data => {
-            console.log(data.id);
-            showCredits(data.id);
+            console.log(data.results);
+            showCredits(data.results);
         }) 
         .catch((err) => {
             console.log({err});
@@ -161,6 +160,7 @@ document.querySelector('a').addEventListener('click', (ev) =>{
     //show cast
     function showCredits(data) {
         data.forEach(cast => {
+
             const { name, profile_path, character } = cast;
             const credit_card = document.createElement('div');
             credit_card.classList.add('credit-card');
