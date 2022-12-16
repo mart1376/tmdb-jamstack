@@ -89,7 +89,6 @@ document.getElementById('pick-tv').addEventListener('click', (ev) => {
 // ~~~~~~~~~~~~~~~~~~~Movies~~~~~~~~~~~~~~~~~~~~ //
 //pick movie button
 document.getElementById('pick-movie').addEventListener('click', (ev) => {
-
     //get movies
     function getMovies (url) {
         fetch(url)
@@ -129,7 +128,6 @@ document.getElementById('pick-movie').addEventListener('click', (ev) => {
             main.appendChild(movie_card);
         });
     }
-
     //search movies
     form.addEventListener ('submit', (ev) =>{
         ev.preventDefault();
@@ -140,15 +138,13 @@ document.getElementById('pick-movie').addEventListener('click', (ev) => {
     });
 });
 
-
 // ~~~~~~~~~~~~~~ Credits ~~~~~~~~~~~~~~ //
-document.querySelector('a').addEventListener('click', (ev) =>{
-    const credits = main_URL + `/search/${id}/credits?` + api_key;
+document.querySelector('main').addEventListener('click', (ev) =>{
+    const credits = main_URL + `/search/${movie_id}/credits?` + api_key;
     function getCredits (url) {
         fetch(url)
         .then(response => response.json())
         .then (data => {
-            console.log(data.results);
             showCredits(data.results);
         }) 
         .catch((err) => {
@@ -156,11 +152,10 @@ document.querySelector('a').addEventListener('click', (ev) =>{
         }) 
     }
     getCredits (credits);
-
+    
     //show cast
     function showCredits(data) {
         data.forEach(cast => {
-
             const { name, profile_path, character } = cast;
             const credit_card = document.createElement('div');
             credit_card.classList.add('credit-card');
@@ -170,7 +165,7 @@ document.querySelector('a').addEventListener('click', (ev) =>{
                         <h2>${name} playing ${character}</h2>
                     </div>
                 `
-            main.innerHTML = (credit_card);
+            main.appendChild(credit_card);
         });
     }
 });
