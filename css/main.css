@@ -103,29 +103,42 @@ header{
     padding: 1rem;
 }
 
+.header-img {
+    width: 45rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--dark);
+    border: 1rem solid var(--dark);
+    /* box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1); */
+    border-radius: 1rem 1rem 0 0;
+}
+
 .search{
-    background: var(--gradient-color);
+    background: var(--primary-color);
     font-size: 1.25rem;
     border-radius: .5rem;
-    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
-    border-color: var(--dark);
+
+    border-color: black;
     text-align: center;
     width: 20rem;
 }
 
 .search:focus{
     outline: 0;
-    background-color: rgb(138, 216, 136);
+    background-color: var(--secondary-color);
 }
 
 .search::placeholder{
     color: black;
 }
 
+a{
+    text-decoration: none;
+}
+
 h1{
     text-align: center;
     color: black;
-    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
     background-color: var(--dark);
     max-width: 45rem;
     margin: 0 auto;
@@ -153,7 +166,7 @@ h2 {
 form{
     display: flex;
     justify-content: center;
-    padding-bottom: 1rem;
+
 }
 
 main{
@@ -166,29 +179,38 @@ main{
 
 .card{
     margin: 1rem;
-    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+    /* box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1); */
     background-color: var(--dark);
     padding: 1rem;
     border-radius: 1rem;
     color: white;
 }
 
+img{
+    background-image: ('../images/tmdb-short-logo.svg');
+}
+
+
+
+.card:hover,
+.card:focus {
+    transform: translate(-.5rem, -.5rem);
+    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
+
+}
+button:hover,
+button:focus {
+    transform: translate(.5rem, .5rem);
+    box-shadow: none;
+
+}
+
 .card img{
     width: 100%;
+    border-radius: 1rem;
 }
 .movie-info{
     color: black;
-}
-
-
-.header-img{
-    width: 45rem;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--dark);
-    border: 1rem solid var(--dark);
-    box-shadow: .5rem .5rem hsla(0, 0%, 7%, 1);
-    border-radius: 1rem 1rem 0 0;
 }
 
 .choice{
@@ -236,11 +258,15 @@ main{
 
 
 
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 55em) {
     main{
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
+    }
+
+    a{
+        display: flex;
     }
 
     .card{

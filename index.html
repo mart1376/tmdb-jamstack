@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <title>TMDB-JAMSTACK</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' *.themoviedb.org 'unsafe-inline';
         img-src 'self' https://image.tmdb.org/ ;" />
 </head>
 
 
-<body>
+<body id="home">
     <header>
-        <img src="./images/tmdb-long-logo.svg" class="header-img" alt="the move database logo">
+        <img src="./images/tmdb-long-logo.svg" class="header-img" alt="the move database logo" type="placeholder">
         <h1>MOVIE & TV SEARCH</h1>
         <div id="choice" class="choice">
             <button id="pick-movie"  class="pick-movie">Movie</button>
@@ -39,6 +39,6 @@
         </div>
     </main>
 
-    <script src="./script.js" defer type="module"></script>
+    <script src="./js/script.js" defer type="module"></script>
 </body>
 </html>

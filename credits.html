@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>TMDB-JAMSTACK</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' *.themoviedb.org 'unsafe-inline';
+        img-src 'self' https://image.tmdb.org/ ;" />
+</head>
+
+
+<body id="credits">
+    <header>
+        <img src="./images/tmdb-long-logo.svg" class="header-img" alt="the move database logo">
+        <h1>MOVIE & TV SEARCH</h1>
+        <div id="choice" class="choice">
+            <button id="pick-movie" class="pick-movie">Movie</button>
+            <button id="pick-tv" class="pick-tv">TV</button>
+        </div>
+        <form action="" id="form">
+            <input type="text" placeholder="Please Select Movie or TV" id="search" class="search">
+        </form>
+    </header>
+
+
+    <main id="main">
+        <div class="credit-card">
+            <img src="./images/tmdb-short-logo.svg" alt="actor">
+            <div class="credits-info">
+                <h3>Movie Title</h3>
+                <div class="cast">
+                    <h3>Cast</h3>
+                    <p class="actors">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi reiciendis, harum earum iusto quae inventore enim vel eaque quas, accusantium vitae, delectus voluptas ut deserunt eveniet autem aliquid perspiciatis expedita.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/script.js" defer type="module"></script>
+</body>
+
+</html>
