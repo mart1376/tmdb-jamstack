@@ -1,171 +1,95 @@
-import {fetchError, NetworkError} from '/js/errors.js';
+import { fetchError, NetworkError } from '/js/errors.js';
 
-//URL's
-const api_key = 'api_key=85b94a9f22d345da9d5c2c8725f134de';
-const main_URL= 'https://api.themoviedb.org/3';
-const img_url = `https://image.tmdb.org/t/p/w500`;
-const home = main_URL + `/movie/popular?` + api_key;
-const TVhome = main_URL + `/tv/popular?` + api_key;
-const movie_search = main_URL + `/search/movie?` + api_key;
-const tv_search = main_URL + `/search/tv?` + api_key;
+// Base URLs and API key
+const apiKey = 'api_key=e94e64e18c1914ecd6e27ed8ecb936dc';
+const mainURL = 'https://api.themoviedb.org/3';
+const imgURL = 'https://image.tmdb.org/t/p/w500';
 
-const form =  document.querySelector('form');
+// Endpoints
+const endpoints = {
+    home: `${mainURL}/movie/popular?${apiKey}`,
+    tvHome: `${mainURL}/tv/popular?${apiKey}`,
+    movieSearch: `${mainURL}/search/movie?${apiKey}`,
+    tvSearch: `${mainURL}/search/tv?${apiKey}`,
+};
+
+const form = document.querySelector('form');
 const main = document.getElementById('main');
 const search = document.getElementById('search');
+let currentType = 'movie'; // Added variable to track the current selection
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    history.replaceState(null, null, './index.html');
-    window.addEventListener('hashchange', hc);
-});
-
-//history
-function hc (ev){
-    let href = ev.currentTarget.href;
-    history.replaceState(null, null, href);
+// Utility function for fetching data
+async function fetchData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new NetworkError(`Fetch error: ${response.statusText}`);
+        return await response.json();
+    } catch (err) {
+        console.error(err);
+        throw new fetchError(err);
+    }
 }
 
-//clear main screen of index css set up
-document.querySelector('main').innerHTML = '';
+// Display data
+function displayData(data, type) {
+    const titleText = type === 'tv' ? 'Popular Shows' : 'Popular Movies';
+    search.placeholder = type === 'tv' ? "Search Shows..." : "Search Movies...";
+    currentType = type;
 
-// ~~~~~~~~~~~~~~~~~~TV~~~~~~~~~~~~~~~~~~~~~ //
-//pick tv button
-document.getElementById('pick-tv').addEventListener('click', (ev) => {
+    const subtitle = document.getElementById('subtitle');
+    subtitle.textContent = titleText;
 
-    //get TV shows
-    function getTV (url) {
-        fetch(url)
-        .then(response => response.json())
-        .then (data => {
-            console.log(data.results);
-            showTV(data.results);
-            if(data.poster_path = null){
-                document.querySelector('img').replaceWith('')
-            }
-        }) 
-        .catch((err) => {
-            if (!response.ok) throw new fetchError(response);
-        }) 
-    }
-    getTV (TVhome)
-
-    //show tv shows
-    function showTV(data) {
-        main.innerHTML = '<h3> Popular TV Shows </h3>';
-        search.placeholder = "Search TV Shows";
-        data.forEach(tv => {
-            const { title, name, poster_path, overview, first_air_date} = tv;
-            const tv_card = document.createElement('div');
-            tv_card.classList.add('card');
-            tv_card.innerHTML = `
+    main.innerHTML = data.map(item => {
+        const { title, name, poster_path, overview, first_air_date, release_date } = item;
+        const itemName = title || name;
+        const date = first_air_date || release_date;
+        return `
+            <div class="card">
                 <a href="./credits.html">
-                    <img src="${img_url + poster_path}" alt="${title}">
+                    <img src="${imgURL}${poster_path}" alt="${itemName}">
                     <div class="movie-info">
-                        <h2>${name}</h2>
+                        <h2>${itemName}</h2>
                         <div class="overview">
                             <h4>Description:</h4>
                             <p>${overview}</p>
                             <h4>Release Date:</h4>
-                            <p>${first_air_date}</p>
+                            <p>${date}</p>
                         </div>
                     </div>
                 </a>
-                `
-            main.appendChild(tv_card);
-        })
-    }
+            </div>`;
+    }).join('');
+}
 
-    //search tv shows
-    form.addEventListener ('submit', (ev) =>{
+// Initialize
+function init() {
+    document.addEventListener('DOMContentLoaded', () => {
+        history.replaceState(null, null, './index.html');
+        // No need to clear the innerHTML of 'main' or 'title-container' here if you're setting initial content in HTML
+    });
+
+    document.getElementById('pick-movie').addEventListener('click', async () => {
+        const data = await fetchData(endpoints.home);
+        displayData(data.results, 'movie');
+        document.getElementById('form').classList.remove('hidden'); // Show the form
+    });
+
+    document.getElementById('pick-tv').addEventListener('click', async () => {
+        const data = await fetchData(endpoints.tvHome);
+        displayData(data.results, 'tv');
+        document.getElementById('form').classList.remove('hidden'); // Show the form
+    });
+
+    form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
-        const tvSearchname = search.value;
-        if(tvSearchname){
-            getTV(tv_search+'&query='+tvSearchname);
-        }
-    })
-});
-
-
-// ~~~~~~~~~~~~~~~~~~~Movies~~~~~~~~~~~~~~~~~~~~ //
-//pick movie button
-document.getElementById('pick-movie').addEventListener('click', (ev) => {
-    //get movies
-    function getMovies (url) {
-        fetch(url)
-        .then(response => response.json())
-        .then (data => {
-            console.log(data.results);
-            showMovies(data.results);
-        }) 
-        .catch((err) => {
-            console.log({err});
-        }) 
-    }
-    getMovies (home)
-
-    //show movies
-    function showMovies(data) {
-        search.placeholder = "Search Movies";
-        main.innerHTML = '<h3> Popular Movies </h3>';
-        data.forEach(movie => {
-            const { title, poster_path, overview, release_date, id} = movie;
-            const movie_card = document.createElement('div');
-            movie_card.classList.add('card');
-            movie_card.innerHTML = `
-                <a href="./credits.html">
-                    <img src="${img_url + poster_path}" alt="${title}">
-                    <div class="movie-info">
-                        <h2>${title}</h2>
-                        <div class="overview">
-                            <h4>Description:</h4>
-                            <p>${overview}</p>
-                            <h4>Release Date:</h4>
-                            <p>${release_date}</p>
-                        </div>
-                    </div>
-                </a>
-                `
-            main.appendChild(movie_card);
-        });
-    }
-    //search movies
-    form.addEventListener ('submit', (ev) =>{
-        ev.preventDefault();
-        const movSearchname = search.value;
-        if(movSearchname){
-            getMovies(movie_search+'&query='+movSearchname);
+        const searchValue = search.value.trim();
+        const searchURL = currentType === 'tv' ? endpoints.tvSearch : endpoints.movieSearch;
+        if (searchValue) {
+            const data = await fetchData(`${searchURL}&query=${encodeURIComponent(searchValue)}`);
+            displayData(data.results, currentType);
         }
     });
-});
+}
 
-// ~~~~~~~~~~~~~~ Credits ~~~~~~~~~~~~~~ //
-document.querySelector('main').addEventListener('click', (ev) =>{
-    const credits = main_URL + `/search/${movie_id}/credits?` + api_key;
-    function getCredits (url) {
-        fetch(url)
-        .then(response => response.json())
-        .then (data => {
-            showCredits(data.results);
-        }) 
-        .catch((err) => {
-            console.log({err});
-        }) 
-    }
-    getCredits (credits);
-    
-    //show cast
-    function showCredits(data) {
-        data.forEach(cast => {
-            const { name, profile_path, character } = cast;
-            const credit_card = document.createElement('div');
-            credit_card.classList.add('credit-card');
-            credit_card.innerHTML = `
-                    <img src="${img_url + profile_path}" alt="${name}">
-                    <div class="credits-info">
-                        <h2>${name} playing ${character}</h2>
-                    </div>
-                `
-            main.appendChild(credit_card);
-        });
-    }
-});
+
+init();
