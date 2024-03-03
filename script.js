@@ -1,4 +1,4 @@
-import { fetchError, NetworkError } from '/js/errors.js';
+import { fetchError, NetworkError } from './errors.js';
 
 // Base URLs and API key
 const apiKey = 'api_key=e94e64e18c1914ecd6e27ed8ecb936dc';
@@ -16,7 +16,7 @@ const endpoints = {
 const form = document.querySelector('form');
 const main = document.getElementById('main');
 const search = document.getElementById('search');
-let currentType = 'movie'; // Added variable to track the current selection
+let currentType = 'movie';
 
 // Utility function for fetching data
 async function fetchData(url) {
