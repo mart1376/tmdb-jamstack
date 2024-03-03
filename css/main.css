@@ -9,28 +9,28 @@
 }
 
 @font-face {
-  font-family: 'VG5000';
-  src: url('./fonts/VG5000-Regular_web.ttf');
+    font-family: 'VG5000';
+    src: url('./fonts/VG5000-Regular_web.ttf');
 }
 
 @font-face {
-  font-family: 'Delogy';
-  src: url(../assets/fonts/Delogy-Regular.ttf);
+    font-family: 'Delogy';
+    src: url(../assets/fonts/Delogy-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'W95';
-  src: url(./fonts/W95FA.otf);
+    font-family: 'W95';
+    src: url(./fonts/W95FA.otf);
 }
 
 html{
     scroll-behavior: smooth;
     background-image: url('./images/nebula.jpeg');
     background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
 
     font-family: 'VG5000', sans-serif;
 }

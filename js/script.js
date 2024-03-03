@@ -3,7 +3,7 @@ import { fetchError, NetworkError } from '/js/errors.js';
 // Base URLs and API key
 const apiKey = 'api_key=e94e64e18c1914ecd6e27ed8ecb936dc';
 const mainURL = 'https://api.themoviedb.org/3';
-const imgURL = 'https://image.tmdb.org/t/p/w500';
+const imgURL = 'https://image.tmdb.org/t/p/w500'; 3
 
 // Endpoints
 const endpoints = {
@@ -43,6 +43,7 @@ function displayData(data, type) {
         const { title, name, poster_path, overview, first_air_date, release_date } = item;
         const itemName = title || name;
         const date = first_air_date || release_date;
+
         return `
             <div class="card">
                 <a href="./credits.html">
