@@ -46,7 +46,7 @@ function displayData(data, type) {
 
         return `
             <div class="card">
-                <a href="./credits.html">
+                <a href="">
                     <img src="${imgURL}${poster_path}" alt="${itemName}">
                     <div class="movie-info">
                         <h2>${itemName}</h2>
@@ -66,7 +66,6 @@ function displayData(data, type) {
 function init() {
     document.addEventListener('DOMContentLoaded', () => {
         history.replaceState(null, null, './index.html');
-        // No need to clear the innerHTML of 'main' or 'title-container' here if you're setting initial content in HTML
     });
 
     document.getElementById('pick-movie').addEventListener('click', async () => {
